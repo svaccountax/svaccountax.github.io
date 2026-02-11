@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Successful</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='payment.css') }}">
+</head>
+<body>
+
+<h1>✅ Payment Successful</h1>
+
+<p><strong>Plan:</strong> {{ order.plan }}</p>
+<p><strong>Amount Paid:</strong> ₹{{ order.amount }}</p>
+
+<p>Thank you for choosing ClearTax.</p>
+
+<a href="/">Go to Home</a>
+
+</body>
+</html>
