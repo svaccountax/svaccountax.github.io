@@ -1,0 +1,286 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: #f4f8ff;
+}
+.auth-container {
+  display: flex;
+  height: 100vh;
+}
+.left-panel {
+  width: 45%;
+  background: #eaf2ff;
+  padding: 60px 40px;
+}
+
+.hero-img {
+  max-width: 300px;
+  margin-bottom: 32px;
+}
+
+.left-panel h3 {
+  margin: 30px 0 15px;
+  font-size: 20px;
+}
+
+.left-panel ul {
+  list-style: none;
+}
+
+.left-panel li {
+  margin: 10px 0;
+  color: #333;
+}
+
+.brand {
+  margin-top: 60px;
+}
+
+.brand strong {
+  font-size: 28px;
+}
+
+.brand span {
+  display: block;
+  color: #777;
+}
+.right-panel {
+  width: 55%;
+  background: white;
+  padding: 60px 100px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-link {
+  position: absolute;
+  right: 60px;
+  top: 40px;
+  font-size: 14px;
+}
+
+.top-link a {
+  color: #1e70ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.right-panel h4 {
+  color: #777;
+}
+
+.right-panel h2 {
+  margin: 10px 0 30px;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 420px;
+}
+.oauth-btn {
+  width: 100%;
+  border: 2px solid #1e70ff;
+  padding: 14px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  background: white;
+  cursor: pointer;
+  text-decoration: none;
+  color: #111111;
+}
+
+.oauth-btn img {
+  width: 22px;
+}
+
+.divider {
+  text-align: center;
+  margin: 18px 0;
+  color: #9ca3af;
+}
+
+.divider span {
+  background: white;
+  padding: 0 10px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+
+}
+
+
+
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input-group input {
+  padding-right: 44px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.toggle-password img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+}
+
+.terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 16px 0 26px;
+}
+
+.terms input[type="checkbox"] {
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.terms label {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.terms a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.terms a:hover {
+  text-decoration: underline;
+}
+.primary-btn {
+  width: 100%;
+  background: #1e70ff;
+  color: white;
+  border: none;
+  padding: 14px 44px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: 0 auto;
+
+
+}
+.decline {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #1e70ff;
+  cursor: pointer;
+ 
+}
+.certs {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.certs img {
+  width: 50px;
+}
+.auth-box .primary-btn {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================
+   FORGOT PASSWORD PAGE
+   ========================= */
+
+.forgot-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.forgot-card {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.forgot-card h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #374151;
+}
+
+.forgot-card .subtitle {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 40px;
+}
+
+.forgot-card label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+.forgot-card input {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 30px;
+}
+
+.forgot-card .primary-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 30px;
+  color: #6b7280;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.back-link strong {
+  color: #111827;
+}
