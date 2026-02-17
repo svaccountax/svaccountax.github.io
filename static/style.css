@@ -8,6 +8,29 @@ box-sizing:border-box;
 font-family: Inter, sans-serif;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: #fff;
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-links a {
+  display: inline-block;
+  padding: 10px 16px;
+  margin-left: 12px;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  color:#374151;
+}
+
+.nav-links a:hover {
+  background: #f1f5f9;
+  border-radius: 6px;
 /* NAVBAR */
 .navbar{
 display:flex;
@@ -342,7 +365,7 @@ margin-bottom:40px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  z-index: 999;
+  z-index: 100;
 }
 
 .hidden {
