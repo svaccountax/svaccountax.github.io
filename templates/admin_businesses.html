@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registered Businesses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='business.css') }}">
+</head>
+<body>
+
+<h1>Registered Businesses</h1>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Business</th>
+        <th>Type</th>
+        <th>Services</th>
+        <th>Owner</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>City</th>
+        <th>Status</th>
+        <th>Update</th>
+    </tr>
+
+    {% for b in businesses %}
+    <tr>
+        <td>{{ b[0] }}</td>
+        <td>{{ b[1] }}</td>
+        <td>{{ b[2] }}</td>
+        <td>{{ b[3] }}</td>
+        <td>{{ b[4] }}</td>
+        <td>{{ b[5] }}</td>
+        <td>{{ b[6] }}</td>
+        <td>{{ b[7] }}</td>
+
+        <td class="status {{ b[8]|lower }}">{{ b[8] }}</td>
+
+        <td>
+            <form method="POST" action="/admin/update-status">
+                <input type="hidden" name="id" value="{{ b[0] }}">
+                <select name="status">
+                    <option value="NEW">NEW</option>
+                    <option value="CONTACTED">CONTACTED</option>
+                    <option value="CONVERTED">CONVERTED</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
