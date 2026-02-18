@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Summary | ClearTax</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='payment.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">clear<span>tax</span></div>
+    <div class="secure">🛡️ 100% secure payments</div>
+</header>
+
+<div class="container">
+
+    <!-- FORM START -->
+    <form method="POST" action="/pay" class="container">
+
+        <!-- LEFT -->
+        <div class="left">
+            <a href="/" class="back">← Order Summary</a>
+
+            <h2>Provide your Contact Information</h2>
+
+            <div class="row">
+                <div class="field">
+                    <label>First Name *</label>
+                    <input type="text" name="first_name" required>
+                </div>
+                <div class="field">
+                    <label>Last Name *</label>
+                    <input type="text" name="last_name" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label>Contact No *</label>
+                    <div class="phone">
+                        <span>IN +91</span>
+                        <input type="text" name="phone" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>State *</label>
+                    <input type="text" name="state" required>
+                </div>
+            </div>
+
+            <div class="gst">
+                <span>Do you have a GSTIN?</span>
+                <input type="checkbox" name="gstin">
+            </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="right">
+            <h3>Plan: Assisted Filing - ITR U <a href="#">Learn More</a></h3>
+
+            <div class="price-row">
+                <span>Plan Amount</span>
+                <span>₹8,413</span>
+            </div>
+
+            <div class="price-row coupon">
+                <span>Have coupon? <a href="#">View best offers</a></span>
+                <span>-₹0.00</span>
+            </div>
+
+            <input class="coupon-input" name="coupon" placeholder="Enter coupon code here">
+
+            <div class="price-row">
+                <span>GST @18%</span>
+                <span>₹1,514.34</span>
+            </div>
+
+            <hr>
+
+            <div class="price-row total">
+                <span>Amount to pay</span>
+                <span>₹9,927.34</span>
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" checked required>
+                <span>
+                    I accept ClearTax <a href="#">TnC</a>,
+                    <a href="#">Privacy</a> &
+                    <a href="#">Refund policy</a>
+                </span>
+            </div>
+
+            <button type="submit" class="pay-btn">
+                Confirm and Pay ₹9,927.34
+            </button>
+        </div>
+
+    </form>
+    <!-- FORM END -->
+
+</div>
+
+</body>
+</html>
