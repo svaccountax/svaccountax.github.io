@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assisted Filing - ITR U</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page2.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="nav-left">
+        <span class="logo">TaxAssist</span>
+    </div>
+
+    <ul class="nav-center">
+        <li class="dropdown">Products</li>
+        <li class="dropdown">Resources</li>
+        <li class="dropdown">Company</li>
+    </ul>
+
+    <div class="nav-right">
+        <button class="btn-primary outline">Login/Register</button>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-left">
+        <h1>Assisted Filing - ITR U</h1>
+
+        <p class="hero-subtext">
+            Tax Filing Simplified for updated return. Get your tax filed by ClearTax Experts
+        </p>
+
+        <div class="rating">
+            <span class="rating-score">⭐ 4.3</span>
+            <a class="rating-reviews">View all reviews (19290)</a>
+        </div>
+
+        <div class="hero-links">
+            <a class="active">About this plan</a>
+            <a>Who Should Buy</a>
+            <a>How It’s Done</a>
+            <a>Documents Required</a>
+            <a>Review</a>
+        </div>
+
+        <div class="hero-description">
+            <h3>About this plan</h3>
+            <p>
+                It is a provision introduced under the Income Tax Act in India, allowing taxpayers
+                to correct mistakes or omissions in previously filed ITR. The ITR-U helps rectify
+                errors such as missing income, wrong claims or incorrect details.
+            </p>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <div class="price-card">
+            <h4>Assisted Filing - ITR U</h4>
+
+            <div class="price">
+                <span class="currency">₹</span>
+                <span class="current">7,499</span>
+            </div>
+
+            <div class="old-price">
+                <span>₹7,499</span>
+                <span class="discount">(0% OFF)</span>
+            </div>
+
+            <a href="{{ url_for('buy_now') }}" class="btn-primary btn-full"> Buy now</a>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

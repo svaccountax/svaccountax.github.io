@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Your Business</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='business.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Register Your Business</h1>
+    <p class="subtitle">
+        Get expert help for GST, Tax Filing & Compliance
+    </p>
+
+    <form method="POST">
+        <input type="text" name="business_name" placeholder="Business Name" required>
+
+        <select name="business_type" required>
+            <option value="">Select Business Type</option>
+            <option>Proprietorship</option>
+            <option>Partnership</option>
+            <option>LLP</option>
+            <option>Private Limited</option>
+            <option>Startup</option>
+        </select>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="GST Registration">
+            GST Registration
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="GST Filing">
+            GST Filing
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="Income Tax Filing">
+            Income Tax Filing
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="Tax Planning">
+            Tax Planning
+        </label>
+
+        <input type="text" name="owner_name" placeholder="Owner / Authorized Person" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="tel" name="phone" placeholder="Mobile Number" required>
+        <input type="text" name="city" placeholder="City">
+
+        <button type="submit" onclick="this.disabled=true; this.innerText='Submitting…'; this.form.submit();"> Submit </button>
+
+
+        <button type="submit">Submit & Get Expert Call</button>
+    </form>
+</div>
+
+</body>
+</html>

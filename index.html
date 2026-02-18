@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+  <meta charset="UTF-8">
+  <title>TaxAssist</title>
+  <link rel="stylesheet" href="static/style.css?v=20260217">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">TaxAssist</div>
+
+  <div class="nav-links">
+    <a href="/login" class="get-started">Get Started</a>
+  </div>
+</nav>
+
+<section class="hero">
+  
+  <div class="hero-content">
+    <div class="badge">
+      ₹1766.69 Cr Refund processed this year
+    </div>
+    <h1>Hire a Tax Expert</h1>
+    <p class="hero-subtext">
+      File your taxes confidently with expert assistance,
+      accurate filing, and maximum savings.
+    </p>
+    <div class="cards">
+
+      <div class="card yellow">
+        <div class="card-content">
+          <div class="card-badge purple">Revised Filing by Experts</div>
+          <div class="icon">
+            <img src="static/icons/document.png">
+          </div>
+          <h3>Belated ITR filing</h3>
+          <p>ITR-U</p>
+        </div>
+
+        <a href="/belated-itr" class="btn-link">
+          <button>Hire Now</button>
+        </a>
+      </div>
+      <div class="card peach">
+       <div class="card-content">
+         <div class="card-badge blue">Max Tax Savings Guaranteed</div>
+         <div class="icon">
+           <img src="static/icons/register.png">
+         </div>
+         <h3>Tax Planning Services</h3>
+         <p>&nbsp;</p> 
+       </div>
+
+        <a href="/tax-planning" class="btn-link">
+          <button>Book Now</button>
+        </a>
+      </div>
+      <div class="card orange">
+        <div class="card-content">
+          <div class="card-badge green">Easy & Fast Registration</div>
+          <div class="icon">
+             <img src="static/icons/bussiness.png">
+          </div>
+          <h3>Register Your Business</h3>
+          <p>&nbsp;</p>
+        </div>
+        <a href="/register-business" class="btn-link">
+          <button>Register</button>
+        </a>
+      </div>
+      <div class="card cyan">
+        <div class="card-content">
+          <div class="card-badge green">Live Breakdown by Experts</div>
+          <div class="icon"> 
+            <img src="static/icons/government.png">
+          </div>
+          <h3>Budget 2026 Updates</h3>
+          <p>&nbsp;</p>
+        </div>
+         <a href="/budget-2026" class="union-budget-widget">
+            <button>Watch Now</button>
+         </a>
+          
+    </div>
+
+  </div>
+</section>
+
+<div id="chatbot-container" class="chatbot hidden">
+  <div class="chat-header">
+    <span>TaxAssist • Product Expert</span>
+    <button onclick="toggleChat()">✕</button>
+  </div>
+
+  <div id="chat-messages" class="chat-body">
+
+    <div id="suggestions" class="quick-replies"></div>
+  </div>
+
+  <div class="chat-input">
+    <input id="chat-input" placeholder="Type a message…"
+           onkeypress="if(event.key==='Enter') sendMessage()">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+<div class="floating-actions">
+
+  <!-- Chatbot Button -->
+  <button class="chat-bubble" onclick="toggleChat(); startChat();">
+
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+      <path d="M4 4h16v11H7l-3 3V4z"
+            stroke="white"
+            stroke-width="2"/>
+    </svg>
+  </button>
+ <a
+  href="https://wa.me/919676359019?text=Hi%20I%20need%20tax%20assistance"
+  class="whatsapp-float"
+  target="_blank"
+  aria-label="Chat with us on WhatsApp"
+ >
+  <span class="wa-tooltip">Chat with us</span>
+  <img
+    src="static/icons/whatsapp.svg"
+    alt="WhatsApp"
+  />
+ </a>
+
+
+
+</div>
+
+<script src=".static/js/chatbot.js"></script>
+
+
+</body>
+</html>
