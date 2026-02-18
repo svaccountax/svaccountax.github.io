@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TaxAssist | {{ "Login" if mode=="login" else "Sign up" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+
+<div class="auth-container">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <img src="{{ url_for('static', filename='images/tax_illustration.svg') }}" class="hero-img">
+
+    <h3>Maximum tax savings on ITR</h3>
+
+    <ul>
+      <li>100% pre-fill - No manual data entries</li>
+      <li>1000s of capital gains transactions imported in seconds</li>
+      <li>Tips and suggestions on tax savings</li>
+    </ul>
+
+    <div class="brand">
+      <strong>clear</strong>
+      <span>from makers of cleartax</span>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+
+    <!-- TOP LINK -->
+    <div class="top-link">
+      {% if mode == "login" %}
+        Not registered? <a href="/signup">Create an account</a>
+      {% else %}
+        Already registered? <a href="/login">Login</a>
+      {% endif %}
+    </div>
+
+    <!-- HEADINGS -->
+    <h4>
+      {{ "Welcome back!" if mode=="login" else "Welcome!" }}
+    </h4>
+
+    <h2>
+      {{ "Login to your account" if mode=="login" else "Create your account" }}
+    </h2>
+
+    <!-- FORM -->
+    <form class="auth-box" method="POST" action="{{ '/login' if mode=='login' else '/signup' }}">
+
+      <!-- GOOGLE AUTH -->
+      <a href="/google-login" class="oauth-btn google">
+        <img src="https://img.icons8.com/color/48/google-logo.png">
+        {{ "Sign in with Google" if mode=="login" else "Sign up with Google" }}
+      </a>
+
+      <div class="divider">
+        <span>Or</span>
+      </div>
+
+      <!-- EMAIL -->
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter email"
+        required
+      >
+
+      <!-- PASSWORD -->
+      <div class="input-group">
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          required
+        >
+
+        <span class="toggle-password" onclick="togglePassword()">
+          <img
+            id="eyeIcon"
+            src="{{ url_for('static', filename='icons/eye-closed.png') }}"
+            data-open="{{ url_for('static', filename='icons/eye-open.png') }}"
+            data-closed="{{ url_for('static', filename='icons/eye-closed.png') }}"
+            alt="Toggle password"
+          >
+        </span>
+      </div>
+
+      <!-- TERMS (ONLY FOR SIGNUP) -->
+      {% if mode == "signup" %}
+      <div class="terms">
+        <input type="checkbox" id="termsCheck" required>
+        <label for="termsCheck">
+          I have read and agreed to the following policies –
+          <a href="#">Privacy Policy</a>,
+          <a href="#">Terms & Conditions</a>
+        </label>
+      </div>
+      {% endif %}
+
+      <!-- PRIMARY BUTTON -->
+      <button type="submit" class="primary-btn">
+        {{ "Login" if mode=="login" else "Agree and continue" }}
+      </button>
+
+      <!-- EXTRA LINK -->
+      {% if mode == "login" %}
+        <a href="/forgot-password" class="decline">Forgot Password</a>
+      {% else %}
+        <a class="decline">I decline</a>
+      {% endif %}
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+function togglePassword() {
+  const password = document.getElementById("password");
+  const eye = document.getElementById("eyeIcon");
+
+  if (password.type === "password") {
+    password.type = "text";
+    eye.src = eye.dataset.open;
+  } else {
+    password.type = "password";
+    eye.src = eye.dataset.closed;
+  }
+}
+</script>
+
+</body>
+</html>

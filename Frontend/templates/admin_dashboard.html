@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6fb;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 230px;
+            height: 100vh;
+            background: #1e40af;
+            position: fixed;
+            padding-top: 20px;
+            color: white;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: #162e8a;
+        }
+
+        /* Main Content */
+        .main {
+            margin-left: 230px;
+            padding: 30px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cards {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #1e40af;
+        }
+
+        .count {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #1e40af;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: #162e8a;
+        }
+
+        .badge {
+            background: red;
+            color: white;
+            padding: 3px 7px;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>TaxAssist Admin</h2>
+    <a href="/admin/dashboard">Dashboard</a>
+    <a href="/admin/callbacks">Callback Requests</a>
+    <a href="/admin/businesses">Registered Businesses</a>
+    <a href="/admin/logout">Logout</a>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+    <div class="topbar">
+        <h1>📊 Dashboard Overview</h1>
+    </div>
+
+    <div class="cards">
+
+        <!-- Callback Card -->
+        <div class="card">
+            <h3>📞 Callback Requests</h3>
+            <div class="count">
+                {{ callback_count }}
+                {% if new_callbacks > 0 %}
+                    <span class="badge">{{ new_callbacks }}</span>
+                {% endif %}
+            </div>
+            <a href="/admin/callbacks" class="btn">Check Requests</a>
+        </div>
+
+        <!-- Business Card -->
+        <div class="card">
+            <h3>🏢 Registered Businesses</h3>
+            <div class="count">
+                {{ business_count }}
+                {% if new_businesses > 0 %}
+                    <span class="badge">{{ new_businesses }}</span>
+                {% endif %}
+            </div>
+            <a href="/admin/businesses" class="btn">View Businesses</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Callback Requests</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f7fb;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #1e40af;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #1e40af;
+            color: #fff;
+        }
+
+        select {
+            padding: 5px;
+        }
+
+        .pending { color: orange; font-weight: bold; }
+        .called { color: blue; font-weight: bold; }
+        .closed { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+<nav style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#1e40af;
+  padding:12px 20px;
+  border-radius:8px;
+  margin-bottom:20px;
+">
+  <div style="color:white;font-weight:bold;">
+    TaxAssist Admin
+  </div>
+
+  <div style="display:flex;gap:16px;">
+    <a href="/" style="color:white;text-decoration:none;">Home</a>
+    <a href="/admin/callbacks" style="color:white;text-decoration:none;">Callbacks</a>
+    <a href="/admin/logout" style="color:#ffdddd;text-decoration:none;">Logout</a>
+  </div>
+</nav>
+
+<h1>📞 Callback Requests</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Requested At</th>
+        <th>Status</th>
+        <th>Update</th>
+    </tr>
+
+    {% for cb in callbacks %}
+    <tr>
+        <td>{{ cb[0] }}</td>
+        <td>{{ cb[1] or "—" }}</td>
+        <td>{{ cb[2] or "—" }}</td>
+        <td>{{ cb[3] }}</td>
+        <td class="{{ cb[4] }}">{{ cb[4].capitalize() }}</td>
+        <td>
+            <form method="POST" action="/admin/callbacks/update/{{ cb[0] }}">
+                <select name="status">
+                    <option value="pending" {% if cb[4]=='pending' %}selected{% endif %}>Pending</option>
+                    <option value="called" {% if cb[4]=='called' %}selected{% endif %}>Called</option>
+                    <option value="closed" {% if cb[4]=='closed' %}selected{% endif %}>Closed</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

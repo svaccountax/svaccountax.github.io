@@ -1,0 +1,204 @@
+:root {
+    --primary-blue: #1a73ff;
+    --dark-text: #1f2937;
+    --light-text: #6b7280;
+    --border-color: #e5e7eb;
+    --bg-light: #f9fafb;
+    --green: #16a34a;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, Arial, sans-serif;
+}
+
+body {
+    color: var(--dark-text);
+    background: white;
+}
+.navbar {
+    height: 70px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+}
+
+/* LEFT */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+/* CENTER MENU */
+.nav-center {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-center li {
+    position: relative;
+    cursor: pointer;
+    color: #333;
+    font-size: 15px;
+}
+
+/* DROPDOWN */
+.dropdown-menu {
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background-color: #ffffff;
+    list-style: none;
+    padding: 10px 0;
+    min-width: 180px;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    display: none;
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f2f6ff;
+}
+
+/* SHOW DROPDOWN */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* RIGHT BUTTON */
+.btn-primary {
+    background-color: #1a73e8;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #1558b0;
+}
+.hero {
+    display: flex;
+    justify-content: space-between;
+    padding: 70px 80px;
+    gap: 60px;
+}
+
+.hero-left {
+    width: 55%;
+}
+
+.hero-right {
+    width: 40%;
+}
+.stats-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.stats-badge .green {
+    color: var(--green);
+    font-weight: 600;
+}
+
+.hero h1 {
+    font-size: 48px;
+    line-height: 1.3;
+    margin-bottom: 40px;
+}
+
+.hero .blue {
+    color: var(--primary-blue);
+}
+.features {
+    display: flex;
+    gap: 30px;
+}
+
+.feature {
+    font-size: 14px;
+    color: var(--light-text);
+    text-align: center;
+}
+.feature img{
+    height: 50px;
+    width: 50px;
+}
+  .callback-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.callback-card label {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 16px;
+}
+
+.callback-card input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.services {
+    padding: 60px 80px;
+}
+
+.services h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 12px;
+    font-weight: 600;
+    background:linear-gradient(#e5e7eb,#78b8ec,#e5e7eb);
+
+}
