@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Consultation | SV Accountax Crew</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 36px auto;
+      padding: 0 16px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+    p {
+      margin: 0 0 18px;
+      color: #475569;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field.full {
+      grid-column: span 2;
+    }
+    label {
+      font-size: 14px;
+      color: #334155;
+    }
+    input, select, textarea {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .alert {
+      background: #ecfeff;
+      border: 1px solid #a5f3fc;
+      color: #155e75;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+    .alert.warn {
+      background: #fef3c7;
+      border-color: #fde68a;
+      color: #92400e;
+    }
+    button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 16px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .field.full {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Book Consultation</h1>
+      <p>Share your details and our team will contact you.</p>
+
+      {% if request.args.get("status") == "submitted" %}
+        <div class="alert">Request submitted successfully. Our team will contact you soon.</div>
+      {% elif request.args.get("status") == "duplicate" %}
+        <div class="alert warn">You already submitted a similar request recently. Our team will contact you.</div>
+      {% elif request.args.get("status") == "missing_contact" %}
+        <div class="alert warn">Please provide phone number or email.</div>
+      {% elif request.args.get("status") == "db_error" %}
+        <div class="alert warn">Temporary issue while submitting request. Please retry or use WhatsApp.</div>
+      {% endif %}
+
+      <form method="POST" action="/request-callback" onsubmit="this.querySelector('button[type=submit]').disabled=true; this.querySelector('button[type=submit]').textContent='Submitting...';">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="source_page" value="consultation">
+        <input type="hidden" name="return_to" value="/consultation">
+
+        <div class="grid">
+          <div class="field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label>Phone Number</label>
+            <input type="text" name="phone" placeholder="Your mobile number">
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Your email">
+          </div>
+          <div class="field">
+            <label>Service Needed</label>
+            <select name="service">
+              <option value="">Select service</option>
+              <option>ITR Filing</option>
+              <option>GST Registration</option>
+              <option>GST Returns Filing</option>
+              <option>TDS Returns</option>
+              <option>MSME Registration</option>
+              <option>IEC Registration</option>
+              <option>Partnership / LLP / Pvt Ltd Registration</option>
+              <option>ROC Compliances</option>
+              <option>Accounting & Bookkeeping</option>
+              <option>Audit & Assurance Support</option>
+              <option>Business Advisory</option>
+              <option>Project Reports for Loans</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label>Preferred Callback Time</label>
+            <input type="text" name="preferred_time" placeholder="Example: Tomorrow 11:00 AM">
+          </div>
+          <div class="field full">
+            <label>Message</label>
+            <textarea name="message" placeholder="Briefly describe your requirement"></textarea>
+          </div>
+        </div>
+
+        <button type="submit">Request Callback</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const alert = document.querySelector(".alert");
+      if (!alert) return;
+      setTimeout(() => {
+        alert.style.transition = "opacity 0.5s ease";
+        alert.style.opacity = "0";
+        setTimeout(() => alert.remove(), 500);
+      }, 5000);
+    })();
+  </script>
+</body>
+</html>

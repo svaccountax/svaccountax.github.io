@@ -1,12 +1,122 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Success</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful | SV Accountax Crew</title>
+    <style>
+        :root {
+            --bg: #f6f9ff;
+            --card: #ffffff;
+            --line: #d9e6f7;
+            --title: #3b5f8f;
+            --text: #475569;
+            --btn: #5c86ba;
+            --btn-dark: #4a74a9;
+            --wa: #25D366;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .card {
+            width: 100%;
+            max-width: 720px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 26px;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+        }
+        h1 {
+            margin: 0 0 8px;
+            color: var(--title);
+            font-size: 34px;
+        }
+        .lead {
+            margin: 0 0 16px;
+            font-size: 18px;
+        }
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 10px;
+            margin: 0 0 14px;
+        }
+        .tabs a {
+            text-decoration: none;
+            color: #3b5f8f;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .tabs a:hover {
+            color: #2d4f7a;
+        }
+        .steps {
+            margin: 0 0 20px 20px;
+            line-height: 1.8;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            border: 1px solid var(--line);
+            color: #0f172a;
+            background: #fff;
+        }
+        .btn.primary {
+            background: var(--btn);
+            border-color: var(--btn);
+            color: #fff;
+        }
+        .btn.primary:hover { background: var(--btn-dark); }
+        .btn.wa {
+            background: var(--wa);
+            border-color: var(--wa);
+            color: #fff;
+        }
+    </style>
 </head>
-<body style="text-align:center; padding:60px;">
-    <h1>✅ Registration Successful</h1>
-    <p>Our tax expert will contact you shortly.</p>
-    <a href="/">Go to Home</a>
+<body>
+    <section class="card">
+        <h1 id="success-summary">Registration Successful</h1>
+        <div class="tabs">
+            <a href="#success-summary">Summary</a>
+            <a href="#next-steps">Next Steps</a>
+            <a href="#quick-actions">Quick Actions</a>
+            <a href="/document-checklist">Checklist Center</a>
+        </div>
+        <p class="lead">Our team has received your business registration request.</p>
+
+        <ol class="steps" id="next-steps">
+            <li>Our expert reviews your submitted details.</li>
+            <li>We contact you for document confirmation.</li>
+            <li>Service onboarding starts based on your selected requirements.</li>
+        </ol>
+
+        <div class="actions" id="quick-actions">
+            <a class="btn primary" href="/">Go to Home</a>
+            <a class="btn" href="/document-checklist">Open Document Checklist</a>
+            <a class="btn wa" href="https://wa.me/919676359019?text=Hi%20I%20just%20submitted%20my%20business%20registration%20request" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+    </section>
 </body>
 </html>
