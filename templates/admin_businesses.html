@@ -1,56 +1,275 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registered Businesses</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='business.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Businesses | SV Accountax Crew</title>
+    <style>
+        :root {
+            --bg: #f6f9ff;
+            --panel: #9ab8e0;
+            --panel-soft: #aac4e8;
+            --text: #334155;
+            --muted: #64748b;
+            --card: #ffffff;
+            --line: #dbe7f5;
+            --accent: #6e97c8;
+            --accent-dark: #5c86ba;
+            --warn-bg: #fff4e5;
+            --warn-border: #f5c37a;
+            --warn-text: #7a4b00;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+        }
+        .layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        .sidebar {
+            background: linear-gradient(180deg, var(--panel) 0%, var(--panel-soft) 100%);
+            padding: 22px 18px;
+            border-right: 1px solid #c9d9ed;
+        }
+        .brand {
+            padding: 14px 12px 20px;
+            border-bottom: 1px solid #c2d4ea;
+            margin-bottom: 14px;
+        }
+        .brand h2 {
+            margin: 0;
+            font-size: 33px;
+            color: #1f2937;
+        }
+        .menu { display: grid; gap: 8px; }
+        .menu a {
+            display: block;
+            padding: 11px 12px;
+            border-radius: 10px;
+            color: #334155;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .menu a:hover { background: rgba(255, 255, 255, 0.45); color: #1f2937; }
+        .menu a.active { background: rgba(255, 255, 255, 0.65); color: #1f2937; font-weight: 600; }
+        .main { padding: 26px 30px; }
+        h1 { margin: 0; font-size: 34px; color: var(--accent-dark); }
+        .sub { margin: 6px 0 14px; color: var(--muted); }
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+        }
+        .alert {
+            margin: 12px 0;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--warn-bg);
+            border: 1px solid var(--warn-border);
+            color: var(--warn-text);
+        }
+        .empty {
+            margin: 10px 0;
+            color: var(--muted);
+            font-weight: 600;
+        }
+        .filters {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 10px 0 14px;
+        }
+        .filters input, .filters select, .filters button, .filters a {
+            padding: 8px 10px;
+            border-radius: 7px;
+            border: 1px solid var(--line);
+            text-decoration: none;
+            color: #0f172a;
+            background: #fff;
+            font-size: 14px;
+        }
+        .filters button {
+            background: var(--accent-dark);
+            color: #fff;
+            border-color: var(--accent-dark);
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 11px;
+            border-bottom: 1px solid #e8eff8;
+            text-align: left;
+            font-size: 14px;
+        }
+        th {
+            background: #edf4ff;
+            color: #35557f;
+            font-weight: 700;
+        }
+        .loading { opacity: 0.75; pointer-events: none; }
+        .pager {
+            margin-top: 12px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .pager a {
+            text-decoration: none;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: #0f172a;
+            border-radius: 6px;
+            padding: 6px 10px;
+        }
+        .pager .disabled { opacity: 0.5; pointer-events: none; }
+        @media (max-width: 980px) {
+            .layout { grid-template-columns: 1fr; }
+            .main { padding: 18px; }
+        }
+    </style>
 </head>
 <body>
+<div class="layout">
+    <aside class="sidebar">
+        <div class="brand"><h2>SV Accountax Crew</h2></div>
+        <nav class="menu">
+            <a href="/">Home</a>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/callbacks">Callback Requests</a>
+            <a href="/admin/businesses" class="active">Registered Businesses</a>
+            <a href="/admin/logout">Logout</a>
+        </nav>
+    </aside>
 
-<h1>Registered Businesses</h1>
+    <main class="main">
+        <h1>Registered Businesses</h1>
+        <div class="sub">View and manage business onboarding pipeline.</div>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>ID</th>
-        <th>Business</th>
-        <th>Type</th>
-        <th>Services</th>
-        <th>Owner</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>City</th>
-        <th>Status</th>
-        <th>Update</th>
-    </tr>
+        {% if db_error or request.args.get("op_status") == "db_error" %}
+        <div class="alert">Database is temporarily unavailable. Please retry in a few seconds.</div>
+        {% endif %}
 
-    {% for b in businesses %}
-    <tr>
-        <td>{{ b[0] }}</td>
-        <td>{{ b[1] }}</td>
-        <td>{{ b[2] }}</td>
-        <td>{{ b[3] }}</td>
-        <td>{{ b[4] }}</td>
-        <td>{{ b[5] }}</td>
-        <td>{{ b[6] }}</td>
-        <td>{{ b[7] }}</td>
+        <section class="panel">
+            {% if businesses|length == 0 %}
+            <div class="empty">No business records available right now.</div>
+            {% endif %}
 
-        <td class="status {{ b[8]|lower }}">{{ b[8] }}</td>
-
-        <td>
-            <form method="POST" action="/admin/update-status">
-                <input type="hidden" name="id" value="{{ b[0] }}">
+            <form method="GET" action="/admin/businesses" class="filters">
+                <input type="text" name="q" placeholder="Search business, owner, email, phone, city" value="{{ q or '' }}">
                 <select name="status">
-                    <option value="NEW">NEW</option>
-                    <option value="CONTACTED">CONTACTED</option>
-                    <option value="CONVERTED">CONVERTED</option>
+                    <option value="all" {% if (status_filter or 'all') == 'all' %}selected{% endif %}>All Status</option>
+                    <option value="NEW" {% if status_filter == 'NEW' %}selected{% endif %}>NEW</option>
+                    <option value="CONTACTED" {% if status_filter == 'CONTACTED' %}selected{% endif %}>CONTACTED</option>
+                    <option value="CONVERTED" {% if status_filter == 'CONVERTED' %}selected{% endif %}>CONVERTED</option>
                 </select>
-                <button type="submit">Update</button>
+                <button type="submit">Apply</button>
+                <a href="/admin/businesses">Reset</a>
+                <a href="{{ url_for('admin.export_businesses', q=(q or ''), status=(status_filter or 'all')) }}">Export CSV</a>
             </form>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
 
+            <table>
+                <tr>
+                    <th>S.No</th>
+                    <th>Business</th>
+                    <th>Type</th>
+                    <th>Services</th>
+                    <th>Owner</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+
+                {% for b in businesses %}
+                <tr>
+                    <td>{{ ((page - 1) * rows_per_page) + loop.index }}</td>
+                    <td>{{ b[1] }}</td>
+                    <td>{{ b[2] }}</td>
+                    <td>{{ b[3] }}</td>
+                    <td>{{ b[4] }}</td>
+                    <td>{{ b[5] }}</td>
+                    <td>{{ b[6] }}</td>
+                    <td>{{ b[7] }}</td>
+                    <td>{{ b[8] }}</td>
+                    <td>
+                        <form method="POST" action="/admin/update-status">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="id" value="{{ b[0] }}">
+                            <input type="hidden" name="next_url" value="{{ request.full_path.rstrip('?') }}">
+                            <select name="status">
+                                <option value="NEW">NEW</option>
+                                <option value="CONTACTED">CONTACTED</option>
+                                <option value="CONVERTED">CONVERTED</option>
+                            </select>
+                            <button type="submit" data-loading-text="Updating...">Update</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="/admin/delete-business" onsubmit="return confirm('Delete this business entry?');">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="id" value="{{ b[0] }}">
+                            <input type="hidden" name="next_url" value="{{ request.full_path.rstrip('?') }}">
+                            <button type="submit" data-loading-text="Deleting...">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <div class="pager">
+                <span>Page {{ page }}</span>
+                {% if has_prev %}
+                <a href="{{ url_for('admin.admin_business', q=(q or ''), status=(status_filter or 'all'), page=(page - 1)) }}">Previous</a>
+                {% else %}
+                <a class="disabled" href="#">Previous</a>
+                {% endif %}
+                {% if has_next %}
+                <a href="{{ url_for('admin.admin_business', q=(q or ''), status=(status_filter or 'all'), page=(page + 1)) }}">Next</a>
+                {% else %}
+                <a class="disabled" href="#">Next</a>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+function clearLoadingState() {
+  document.querySelectorAll("button.loading").forEach((el) => el.classList.remove("loading"));
+  document.querySelectorAll("button[data-loading-text]").forEach((btn) => {
+    if (btn.textContent.trim() === (btn.dataset.loadingText || "")) {
+      btn.textContent = btn.dataset.loadingText === "Deleting..." ? "Delete" : "Update";
+    }
+  });
+}
+document.querySelectorAll("form").forEach((form) => {
+  form.addEventListener("submit", () => {
+    const btn = form.querySelector("button[type='submit']");
+    if (btn) {
+      btn.classList.add("loading");
+      btn.textContent = btn.dataset.loadingText || "Submitting...";
+    }
+  });
+});
+clearLoadingState();
+window.addEventListener("pageshow", clearLoadingState);
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>TaxAssist | {{ "Login" if mode=="login" else "Sign up" }}</title>
+  <title>SV Accountax Crew | {{ "Login" if mode=="login" else "Sign up" }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
 </head>
 <body>
@@ -23,8 +23,8 @@
     </ul>
 
     <div class="brand">
-      <strong>clear</strong>
-      <span>from makers of cleartax</span>
+      <strong>SV Accountax Crew</strong>
+      <span></span>
     </div>
   </div>
 
@@ -51,6 +51,7 @@
 
     <!-- FORM -->
     <form class="auth-box" method="POST" action="{{ '/login' if mode=='login' else '/signup' }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
       <!-- GOOGLE AUTH -->
       <a href="/google-login" class="oauth-btn google">
@@ -97,8 +98,9 @@
         <input type="checkbox" id="termsCheck" required>
         <label for="termsCheck">
           I have read and agreed to the following policies –
-          <a href="#">Privacy Policy</a>,
-          <a href="#">Terms & Conditions</a>
+          <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>,
+          <a href="/terms-and-conditions" target="_blank" rel="noopener">Terms & Conditions</a>,
+          <a href="/data-confidentiality" target="_blank" rel="noopener">Data Confidentiality</a>
         </label>
       </div>
       {% endif %}

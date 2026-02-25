@@ -13,8 +13,28 @@
     <p class="subtitle">
         Get expert help for GST, Tax Filing & Compliance
     </p>
+    <div class="form-tabs">
+        <a href="#before-submit">Before Submit</a>
+        <a href="#business-details">Business Details</a>
+        <a href="#service-details">Services</a>
+        <a href="#contact-details">Contact Details</a>
+        <a href="/document-checklist">Checklist Center</a>
+    </div>
 
-    <form method="POST">
+    <div class="precheck" id="before-submit">
+        <h3>Before You Submit</h3>
+        <ul>
+            <li>Keep business and owner details ready.</li>
+            <li>Use active email and mobile for communication.</li>
+            <li>Select at least one service required.</li>
+            <li>Review all entries once before submit.</li>
+        </ul>
+        <a href="/document-checklist">Open Document Checklist Center</a>
+    </div>
+
+    <form method="POST" onsubmit="this.querySelector('button[type=submit]').disabled=true; this.querySelector('button[type=submit]').innerText='Submitting…';">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div id="business-details"></div>
         <input type="text" name="business_name" placeholder="Business Name" required>
 
         <select name="business_type" required>
@@ -25,7 +45,9 @@
             <option>Private Limited</option>
             <option>Startup</option>
         </select>
+        <small class="helper-text">Tip: Choose the current legal structure or the one you plan to register.</small>
 
+        <div id="service-details"></div>
         <label class="checkbox">
             <input type="checkbox" name="services" value="GST Registration">
             GST Registration
@@ -46,17 +68,49 @@
             Tax Planning
         </label>
 
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="ROC Compliances">
+            ROC Compliances
+        </label>
+
+        <label class="checkbox">
+            <input type="checkbox" name="services" value="Accounting & Bookkeeping">
+            Accounting & Bookkeeping
+        </label>
+
+        <div id="contact-details"></div>
         <input type="text" name="owner_name" placeholder="Owner / Authorized Person" required>
         <input type="email" name="email" placeholder="Email Address" required>
         <input type="tel" name="phone" placeholder="Mobile Number" required>
         <input type="text" name="city" placeholder="City">
 
-        <button type="submit" onclick="this.disabled=true; this.innerText='Submitting…'; this.form.submit();"> Submit </button>
+        <button type="submit">Submit</button>
 
 
-        <button type="submit">Submit & Get Expert Call</button>
     </form>
 </div>
+
+<script>
+(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requestedService = params.get("service");
+    if (!requestedService) return;
+
+    const normalized = requestedService.trim().toLowerCase();
+    const serviceCheckboxes = document.querySelectorAll('input[name="services"]');
+    let found = false;
+    serviceCheckboxes.forEach((checkbox) => {
+        if (checkbox.value.trim().toLowerCase() === normalized) {
+            checkbox.checked = true;
+            found = true;
+        }
+    });
+
+    if (found) {
+        document.getElementById("service-details")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+})();
+</script>
 
 </body>
 </html>
