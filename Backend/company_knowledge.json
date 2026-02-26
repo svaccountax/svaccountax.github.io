@@ -1,0 +1,60 @@
+{
+  "company": {
+    "name": "SV Accountax Crew",
+    "about": "SV Accountax Crew is a professional tax and compliance firm providing reliable accounting, GST, income tax, and business registration services. We help individuals, startups, and growing businesses stay compliant and stress-free."
+  },
+  "contact": {
+    "email": "svatcrew@outlook.com",
+    "phone": "9676359019",
+    "whatsapp": "919676359019",
+    "hours": "Monday-Saturday, 10:00 AM to 7:00 PM"
+  },
+  "policies": {
+    "confidentiality": "Client data is kept confidential.",
+    "third_party": "No data is shared with third parties."
+  },
+  "plans": {
+    "basic": {
+      "name": "Basic Plan",
+      "for": "Individuals",
+      "includes": [
+        "ITR Filing",
+        "Basic Consultation"
+      ]
+    },
+    "professional": {
+      "name": "Professional Plan",
+      "for": "Professionals and growing clients",
+      "includes": [
+        "GST + ITR",
+        "TDS Filing",
+        "Compliance Reminder"
+      ]
+    },
+    "business": {
+      "name": "Business Plan",
+      "for": "Business owners",
+      "includes": [
+        "Accounting + GST + ROC",
+        "Dedicated Support",
+        "Monthly Compliance Handling"
+      ]
+    }
+  },
+  "services_offered": [
+    "Income Tax Return (ITR) Filing",
+    "GST Registration",
+    "GST Returns Filing",
+    "TDS Returns (24Q, 26Q, 27Q)",
+    "MSME Registration",
+    "IEC Registration",
+    "Partnership Firm Registration",
+    "LLP Registration",
+    "Pvt Ltd Company Incorporation",
+    "ROC Compliances",
+    "Accounting and Bookkeeping",
+    "Audit and Assurance Support",
+    "Business Advisory Services",
+    "Project Reports for Loans"
+  ]
+}

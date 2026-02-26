@@ -2,53 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>TaxAssist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SV Accountax Crew</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <nav class="navbar">
-  <div class="logo">TaxAssist</div>
+  <div class="logo">SV Accountax Crew</div>
 
   <div class="nav-links">
-
     {% if session.get("role") == "admin" %}
-        <a href="/admin/dashboard">Admin Dashboard</a>
-        <a href="/logout" style="margin-left:15px;">Logout</a>
+        <a href="/admin/dashboard" class="nav-link is-loading-link">Admin Dashboard</a>
+        <a href="/logout" class="nav-link nav-logout is-loading-link">Logout</a>
 
     {% elif session.get("role") == "user" %}
-        {{ session["user"]["name"] }}
-        <a href="/logout" style="margin-left:15px;">Logout</a>
+        <a href="/dashboard" class="nav-link is-loading-link">User Dashboard</a>
+        <span class="nav-user">{{ session["user"]["name"] }}</span>
+        <a href="/logout" class="nav-link nav-logout is-loading-link">Logout</a>
 
     {% else %}
-        
-        <a href="/login" class="get-started" style="margin-left:15px;">Get Started</a>
+        <a href="/login" class="get-started is-loading-link">Get Started / Login</a>
     {% endif %}
 
   </div>
 </nav>
 
-<section class="hero">
-  
+<section class="hero home-animate">
   <div class="hero-content">
     <div class="badge">
-      ₹1766.69 Cr Refund processed this year
+      Trusted Tax & Compliance Partner
     </div>
 
-    <h1>Hire a Tax Expert</h1>
+    <h1>Professional Tax Support for Individuals and Businesses</h1>
 
     <p class="hero-subtext">
-      File your taxes confidently with expert assistance,
-      accurate filing, and maximum savings.
+      SV Accountax Crew helps you file returns, manage GST and registrations,
+      and stay compliant with expert guidance and confidential handling.
     </p>
 
+    <div class="hero-actions">
+      {% if session.get("role") == "admin" %}
+        <a href="/admin/dashboard" class="hero-btn hero-btn-primary is-loading-link">Admin Dashboard</a>
+      {% elif session.get("role") == "user" %}
+        <a href="/dashboard" class="hero-btn hero-btn-primary is-loading-link">User Dashboard</a>
+      {% else %}
+        <a href="/consultation" class="hero-btn hero-btn-primary is-loading-link">Book Consultation</a>
+      {% endif %}
+      <a
+        href="https://wa.me/919676359019?text=Hi%20I%20need%20tax%20assistance"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hero-btn hero-btn-whatsapp"
+      >WhatsApp</a>
+    </div>
+
+    <h2 class="featured-heading">Featured Services</h2>
     <div class="cards">
 
       <div class="card yellow">
         <div class="card-content">
           <div class="card-badge purple">Revised Filing by Experts</div>
           <div class="icon">
-            <img src="{{ url_for('static', filename='icons/document.png') }}">
+            <img src="{{ url_for('static', filename='icons/document.png') }}" width="24" height="24" decoding="async">
           </div>
           <h3>Belated ITR filing</h3>
           <p>ITR-U</p>
@@ -62,7 +78,7 @@
         <div class="card-content">
           <div class="card-badge blue">Max Tax Savings Guaranteed</div>
           <div class="icon">
-            <img src="{{ url_for('static', filename='icons/register.png') }}">
+            <img src="{{ url_for('static', filename='icons/register.png') }}" width="24" height="24" decoding="async">
           </div>
           <h3>Tax Planning Services</h3>
           <p>&nbsp;</p>
@@ -76,7 +92,7 @@
         <div class="card-content">
           <div class="card-badge green">Easy & Fast Registration</div>
           <div class="icon">
-            <img src="{{ url_for('static', filename='icons/bussiness.png') }}">
+            <img src="{{ url_for('static', filename='icons/bussiness.png') }}" width="24" height="24" decoding="async">
           </div>
           <h3>Register Your Business</h3>
           <p>&nbsp;</p>
@@ -88,26 +104,144 @@
 
       <div class="card cyan">
         <div class="card-content">
-          <div class="card-badge green">Live Breakdown by Experts</div>
+          <div class="card-badge green">All Required Docs in One Place</div>
           <div class="icon">
-            <img src="{{ url_for('static', filename='icons/government.png') }}">
+            <img src="{{ url_for('static', filename='icons/document.png') }}" width="24" height="24" decoding="async">
           </div>
-          <h3>Budget 2026 Updates</h3>
+          <h3>Document Checklist Center</h3>
           <p>&nbsp;</p>
         </div>
-        <a href="/budget-2026">
-          <button>Watch Now</button>
+        <a href="/document-checklist" class="btn-link">
+          <button>Open</button>
         </a>
       </div>
 
     </div>
+
+    <div class="quick-services-wrap home-animate delay-1">
+      <h2 class="featured-heading">More Services</h2>
+      <div class="quick-services">
+        <a href="/belated-itr" class="quick-service-card is-loading-link">
+          <h4>ITR Filing</h4>
+          <p>Belated and revised filing support</p>
+          <span>Know more</span>
+        </a>
+      <a href="/tax-planning?service=GST%20Returns%20Filing" class="quick-service-card is-loading-link">
+        <h4>GST Services</h4>
+        <p>Registration and returns guidance</p>
+        <span>Know more</span>
+      </a>
+      <a href="/tax-planning?service=TDS%20Returns" class="quick-service-card is-loading-link">
+        <h4>TDS Returns</h4>
+        <p>24Q, 26Q, 27Q compliance help</p>
+        <span>Know more</span>
+      </a>
+        <a href="/register-business" class="quick-service-card is-loading-link">
+          <h4>Business Registration</h4>
+          <p>MSME, LLP, Pvt Ltd and more</p>
+          <span>Know more</span>
+        </a>
+      <a href="/register-business?service=ROC%20Compliances" class="quick-service-card is-loading-link">
+        <h4>ROC Compliances</h4>
+        <p>Ongoing company compliance support</p>
+        <span>Know more</span>
+      </a>
+      <a href="/register-business?service=Accounting%20%26%20Bookkeeping" class="quick-service-card is-loading-link">
+        <h4>Accounting</h4>
+        <p>Bookkeeping and advisory support</p>
+        <span>Know more</span>
+      </a>
+      </div>
+    </div>
   </div>
+</section>
+
+<section class="checklist-highlight home-animate delay-1">
+  <div class="checklist-card">
+    <h2>Document Checklist Center</h2>
+    <p>
+      Before filing ITR, GST, or registration forms, quickly verify the required documents
+      and avoid delays.
+    </p>
+    <a href="/document-checklist" class="checklist-btn is-loading-link">Check Required Documents</a>
+  </div>
+</section>
+
+<section class="trust-strip home-animate delay-2">
+  <div class="trust-item">Client data kept confidential</div>
+  <div class="trust-item">Experienced tax and compliance support</div>
+  <div class="trust-item">Working Hours: Monday to Saturday, 10:00 AM to 7:00 PM</div>
+</section>
+
+<section class="home-journey home-animate delay-2">
+  <h2>How It Works</h2>
+  <div class="journey-grid">
+    <div class="journey-card">
+      <span class="journey-step">Step 1</span>
+      <h3>Share Requirement</h3>
+      <p>Select service and submit callback or connect via WhatsApp.</p>
+    </div>
+    <div class="journey-card">
+      <span class="journey-step">Step 2</span>
+      <h3>Expert Review</h3>
+      <p>Our team reviews your case and gives a clear checklist.</p>
+    </div>
+    <div class="journey-card">
+      <span class="journey-step">Step 3</span>
+      <h3>Compliance Completion</h3>
+      <p>We help complete filing and compliance without confusion.</p>
+    </div>
+  </div>
+</section>
+
+<section class="plans-preview home-animate delay-3">
+  <h2>Choose Your Support Plan</h2>
+  <div class="plans-grid">
+    <div class="plan-mini basic">
+      <h3>Basic Plan</h3>
+      <p>For individuals</p>
+      <ul>
+        <li>ITR Filing</li>
+        <li>Basic Consultation</li>
+      </ul>
+    </div>
+    <div class="plan-mini pro">
+      <h3>Professional Plan</h3>
+      <p>For professionals and growing clients</p>
+      <ul>
+        <li>GST + ITR support</li>
+        <li>TDS Filing support</li>
+      </ul>
+    </div>
+    <div class="plan-mini business">
+      <h3>Business Plan</h3>
+      <p>For business owners</p>
+      <ul>
+        <li>Accounting + GST + ROC</li>
+        <li>Monthly compliance handling</li>
+      </ul>
+    </div>
+  </div>
+  <div class="plans-cta">
+    <a href="/consultation" class="hero-btn hero-btn-primary is-loading-link">Book Consultation</a>
+    <a href="https://wa.me/919676359019?text=Hi%20I%20need%20help%20choosing%20a%20plan" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-whatsapp">Chat on WhatsApp</a>
+  </div>
+</section>
+
+<section class="assistant-note home-animate delay-3">
+  <p>
+    Need help choosing the right service? Use chatbot for quick guidance or connect on WhatsApp for direct support.
+  </p>
 </section>
 
 <div id="chatbot-container" class="chatbot hidden">
   <div class="chat-header">
-    <span>TaxAssist • Product Expert</span>
-    <button onclick="toggleChat()">✕</button>
+    <span class="chat-brand">SV Accountax Crew</span>
+    <div class="chat-header-actions">
+      <button id="chat-lang-en" type="button" class="chat-lang-btn active" onclick="setChatLanguage('en')">EN</button>
+      <button id="chat-lang-te" type="button" class="chat-lang-btn" onclick="setChatLanguage('te')">తెలుగు</button>
+      <button type="button" class="chat-close-btn" onclick="toggleChat()">✕</button>
+    </div>
   </div>
 
   <div id="chat-messages" class="chat-body">
@@ -117,7 +251,7 @@
   <div class="chat-input">
     <input id="chat-input" placeholder="Type a message…"
            onkeypress="if(event.key==='Enter') sendMessage()">
-    <button onclick="sendMessage()">Send</button>
+    <button id="chat-send-btn" onclick="sendMessage()">Send</button>
   </div>
 </div>
 
@@ -141,12 +275,48 @@
     <img
       src="{{ url_for('static', filename='icons/whatsapp.svg') }}"
       alt="WhatsApp"
+      width="28"
+      height="28"
+      decoding="async"
     />
   </a>
 
 </div>
 
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="/document-checklist">Document Checklist Center</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="/terms-and-conditions">Terms & Conditions</a>
+    <a href="/data-confidentiality">Data Confidentiality</a>
+  </div>
+  <div class="footer-contact">
+    <span>Phone: +91 9676359019</span>
+    <span>Email: svatcrew@outlook.com</span>
+    <span>Mon-Sat: 10:00 AM - 7:00 PM</span>
+  </div>
+  <p>All services and payments are handled offline by SV Accountax Crew.</p>
+</footer>
+
+<div class="mobile-contact-bar">
+  <a href="tel:+919676359019">Call</a>
+  <a href="https://wa.me/919676359019?text=Hi%20I%20need%20tax%20assistance" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</div>
+
 <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+<script>
+document.querySelectorAll(".is-loading-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    link.classList.add("loading");
+  });
+});
+
+window.addEventListener("pageshow", () => {
+  document.querySelectorAll(".is-loading-link.loading").forEach((link) => {
+    link.classList.remove("loading");
+  });
+});
+</script>
 
 </body>
 </html>

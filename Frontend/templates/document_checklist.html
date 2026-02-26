@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Checklist Center | SV Accountax Crew</title>
+  <style>
+    :root {
+      --bg: #f6f9ff;
+      --panel: #eef4ff;
+      --line: #d6e3f7;
+      --text: #334155;
+      --muted: #64748b;
+      --accent: #5c86ba;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .wrap {
+      max-width: 1120px;
+      margin: 28px auto;
+      padding: 0 18px 24px;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      font-size: 34px;
+      font-weight: 700;
+      color: #3b5f8f;
+    }
+    .home-link {
+      text-decoration: none;
+      color: #3b5f8f;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 8px 12px;
+      background: #fff;
+      font-weight: 600;
+    }
+    h1 {
+      margin: 0;
+      font-size: 38px;
+      color: #3b5f8f;
+    }
+    .sub {
+      margin: 8px 0 20px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+    }
+    .tabs a {
+      text-decoration: none;
+      color: #3b5f8f;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .tabs a:hover {
+      color: #2d4f7a;
+    }
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 7px 18px rgba(15, 23, 42, 0.06);
+    }
+    .card h2 {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 23px;
+    }
+    ul {
+      margin: 8px 0 0 20px;
+      padding: 0;
+      line-height: 1.6;
+    }
+    .note {
+      margin-top: 16px;
+      background: #fff;
+      border: 1px dashed #bfd1ec;
+      color: #475569;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 30px; }
+      .brand { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">SV Accountax Crew</div>
+      <a class="home-link" href="/">Home</a>
+    </div>
+
+    <h1>Document Checklist Center</h1>
+    <p class="sub">Use this page to prepare documents before sharing on WhatsApp or during consultation.</p>
+    <div class="tabs">
+      <a href="#itr">ITR</a>
+      <a href="#gst-registration">GST Registration</a>
+      <a href="#gst-returns">GST Returns</a>
+      <a href="#tds">TDS Returns</a>
+      <a href="#business-registration">Business Registration</a>
+      <a href="#roc">ROC</a>
+      <a href="#final-note">Note</a>
+    </div>
+
+    <div class="grid">
+      <section class="card" id="itr">
+        <h2>Income Tax Return (ITR)</h2>
+        <ul>
+          <li>PAN and Aadhaar</li>
+          <li>Form 16 / Salary slips</li>
+          <li>Bank statement (FY period)</li>
+          <li>Investment proofs (80C/80D etc.)</li>
+          <li>Home loan interest certificate (if applicable)</li>
+        </ul>
+      </section>
+
+      <section class="card" id="gst-registration">
+        <h2>GST Registration</h2>
+        <ul>
+          <li>PAN of business/owner</li>
+          <li>Aadhaar of proprietor/partners/directors</li>
+          <li>Business address proof</li>
+          <li>Bank account proof (cancelled cheque/passbook)</li>
+          <li>Photo and authorization details</li>
+        </ul>
+      </section>
+
+      <section class="card" id="gst-returns">
+        <h2>GST Returns Filing</h2>
+        <ul>
+          <li>Sales invoices and purchase invoices</li>
+          <li>HSN/SAC summary</li>
+          <li>Previous return details</li>
+          <li>E-way bill summary (if applicable)</li>
+          <li>Input tax credit details</li>
+        </ul>
+      </section>
+
+      <section class="card" id="tds">
+        <h2>TDS Returns (24Q/26Q/27Q)</h2>
+        <ul>
+          <li>TAN and deductor details</li>
+          <li>Deductee PAN list</li>
+          <li>Quarter-wise deduction sheet</li>
+          <li>Challan details (CIN/BSR/date)</li>
+          <li>Salary breakup (for 24Q)</li>
+        </ul>
+      </section>
+
+      <section class="card" id="business-registration">
+        <h2>Business Registration (LLP/Pvt Ltd/Firm)</h2>
+        <ul>
+          <li>Promoter PAN and Aadhaar</li>
+          <li>Passport size photos</li>
+          <li>Registered office proof + NOC</li>
+          <li>Proposed business names</li>
+          <li>Email and mobile for OTP verification</li>
+        </ul>
+      </section>
+
+      <section class="card" id="roc">
+        <h2>ROC Compliance</h2>
+        <ul>
+          <li>Company CIN and DSC details</li>
+          <li>Financial statements</li>
+          <li>Board/shareholder resolutions</li>
+          <li>Statutory registers (latest)</li>
+          <li>Previous filing acknowledgments</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="note" id="final-note">
+      Final required documents may vary case-to-case. For exact list, contact SV Accountax Crew on WhatsApp: +91 9676359019.
+    </div>
+  </div>
+</body>
+</html>

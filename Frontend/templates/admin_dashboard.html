@@ -1,154 +1,266 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Dashboard</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Admin Dashboard | SV Accountax Crew</title>
     <style>
+        :root {
+            --bg: #f6f9ff;
+            --panel: #9ab8e0;
+            --panel-soft: #aac4e8;
+            --text: #334155;
+            --muted: #64748b;
+            --card: #ffffff;
+            --line: #dbe7f5;
+            --accent: #6e97c8;
+            --accent-dark: #5c86ba;
+            --warn-bg: #fff4e5;
+            --warn-border: #f5c37a;
+            --warn-text: #7a4b00;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #f4f6fb;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            color: var(--text);
+            background: var(--bg);
         }
 
-        /* Sidebar */
+        .layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
         .sidebar {
-            width: 230px;
-            height: 100vh;
-            background: #1e40af;
-            position: fixed;
-            padding-top: 20px;
-            color: white;
+            background: linear-gradient(180deg, var(--panel) 0%, var(--panel-soft) 100%);
+            color: #1f2937;
+            padding: 22px 18px;
+            border-right: 1px solid #c9d9ed;
         }
 
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 40px;
+        .brand {
+            padding: 14px 12px 20px;
+            border-bottom: 1px solid #c2d4ea;
+            margin-bottom: 14px;
         }
 
-        .sidebar a {
+        .brand h2 {
+            margin: 0;
+            font-size: 33px;
+            line-height: 1.22;
+            letter-spacing: 0.2px;
+        }
+
+        .menu {
+            display: grid;
+            gap: 8px;
+        }
+
+        .menu a {
             display: block;
-            padding: 12px 20px;
-            color: white;
+            padding: 11px 12px;
+            border-radius: 10px;
+            color: #334155;
             text-decoration: none;
+            font-size: 17px;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
-        .sidebar a:hover {
-            background: #162e8a;
+        .menu a:hover {
+            background: rgba(255, 255, 255, 0.45);
+            color: #1f2937;
         }
 
-        /* Main Content */
+        .menu a.active {
+            background: rgba(255, 255, 255, 0.65);
+            color: #1f2937;
+            font-weight: 600;
+        }
+
         .main {
-            margin-left: 230px;
-            padding: 30px;
+            padding: 30px 34px;
         }
 
-        .topbar {
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 38px;
+            letter-spacing: 0.3px;
+        }
+
+        .header p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .alert {
+            margin: 14px 0 18px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: var(--warn-bg);
+            border: 1px solid var(--warn-border);
+            color: var(--warn-text);
         }
 
         .cards {
-            margin-top: 30px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(2, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
         }
 
         .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: 0.3s;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+            padding: 22px;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
+        .card.callback {
+            border-top: 5px solid var(--accent);
         }
 
-        .card h3 {
-            margin-bottom: 10px;
-            color: #1e40af;
+        .card.business {
+            border-top: 5px solid var(--accent);
+        }
+
+        .label {
+            margin: 0 0 10px;
+            font-size: 24px;
+            color: var(--accent-dark);
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0 14px;
         }
 
         .count {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 26px;
+            height: 26px;
+            border-radius: 13px;
+            padding: 0 8px;
+            background: #dc2626;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
         }
 
         .btn {
             display: inline-block;
-            padding: 8px 14px;
-            background: #1e40af;
-            color: white;
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 14px;
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-weight: 600;
+            color: #fff;
+            background: var(--accent-dark);
+            transition: transform 0.08s ease, filter 0.2s ease;
         }
 
         .btn:hover {
-            background: #162e8a;
+            filter: brightness(1.07);
         }
 
-        .badge {
-            background: red;
-            color: white;
-            padding: 3px 7px;
-            border-radius: 50%;
-            font-size: 12px;
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        @media (max-width: 980px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
         }
     </style>
 </head>
 <body>
+<div class="layout">
+    <aside class="sidebar">
+        <div class="brand">
+            <h2>SV Accountax Crew</h2>
+        </div>
+        <nav class="menu">
+            <a href="/">Home</a>
+            <a href="/admin/dashboard" class="active">Dashboard</a>
+            <a href="/admin/callbacks">Callback Requests</a>
+            <a href="/admin/businesses">Registered Businesses</a>
+            <a href="/admin/logout">Logout</a>
+        </nav>
+    </aside>
 
-<!-- Sidebar -->
-<div class="sidebar">
-    <h2>TaxAssist Admin</h2>
-    <a href="/admin/dashboard">Dashboard</a>
-    <a href="/admin/callbacks">Callback Requests</a>
-    <a href="/admin/businesses">Registered Businesses</a>
-    <a href="/admin/logout">Logout</a>
-</div>
+    <main class="main">
+        <div class="header">
+            <div>
+                <h1>Dashboard Overview</h1>
+                <p>Track leads, callback follow-ups, and registration pipeline.</p>
+            </div>
+        </div>
 
-<!-- Main Content -->
-<div class="main">
+        {% if db_error or request.args.get("op_status") == "db_error" %}
+        <div class="alert">Database is temporarily unavailable. Please retry in a few seconds.</div>
+        {% endif %}
 
-    <div class="topbar">
-        <h1>📊 Dashboard Overview</h1>
-    </div>
-
-    <div class="cards">
-
-        <!-- Callback Card -->
-        <div class="card">
-            <h3>📞 Callback Requests</h3>
-            <div class="count">
-                {{ callback_count }}
-                {% if new_callbacks > 0 %}
+        <section class="cards">
+            <article class="card callback">
+                <h3 class="label">Callback Requests</h3>
+                <div class="metric">
+                    <div class="count">{{ callback_count }}</div>
+                    {% if new_callbacks > 0 %}
                     <span class="badge">{{ new_callbacks }}</span>
-                {% endif %}
-            </div>
-            <a href="/admin/callbacks" class="btn">Check Requests</a>
-        </div>
+                    {% endif %}
+                </div>
+                <a href="/admin/callbacks" class="btn">Open Callbacks</a>
+            </article>
 
-        <!-- Business Card -->
-        <div class="card">
-            <h3>🏢 Registered Businesses</h3>
-            <div class="count">
-                {{ business_count }}
-                {% if new_businesses > 0 %}
+            <article class="card business">
+                <h3 class="label">Registered Businesses</h3>
+                <div class="metric">
+                    <div class="count">{{ business_count }}</div>
+                    {% if new_businesses > 0 %}
                     <span class="badge">{{ new_businesses }}</span>
-                {% endif %}
-            </div>
-            <a href="/admin/businesses" class="btn">View Businesses</a>
-        </div>
-
-    </div>
-
+                    {% endif %}
+                </div>
+                <a href="/admin/businesses" class="btn">Open Businesses</a>
+            </article>
+        </section>
+    </main>
 </div>
-
 </body>
 </html>

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Verification | TaxAssist</title>
+  <title>Admin Verification | SV Accountax Crew</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -108,6 +108,7 @@
     </p>
 
     <form method="POST" action="/verify-otp">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       <input
         type="text"
         name="otp"
@@ -127,4 +128,3 @@
 
 </body>
 </html>
-
