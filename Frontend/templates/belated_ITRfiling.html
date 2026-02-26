@@ -12,7 +12,7 @@
 
 <nav class="navbar">
     <div class="nav-left">
-        <span class="logo">TaxAssist</span>
+        <span class="logo">SV Accountax Crew</span>
     </div>
 
     <ul class="nav-center">
@@ -42,9 +42,7 @@
         </div>
 
     {% else %}
-        <a href="/login">
-            <button class="btn-primary outline">Login/Register</button>
-        </a>
+        
     {% endif %}
 
 </div>
@@ -56,7 +54,7 @@
         <h1>Assisted Filing - ITR U</h1>
 
         <p class="hero-subtext">
-            Tax Filing Simplified for updated return. Get your tax filed by ClearTax Experts
+            Tax Filing Simplified for updated return. Get your tax filed by SV Accountax Crew Experts
         </p>
 
         <div class="rating">
@@ -65,14 +63,14 @@
         </div>
 
         <div class="hero-links">
-            <a class="active">About this plan</a>
-            <a>Who Should Buy</a>
-            <a>How It’s Done</a>
-            <a>Documents Required</a>
-            <a>Review</a>
+            <a class="active" href="#about-plan">About this plan</a>
+            <a href="#who-should-buy">Who Should Buy</a>
+            <a href="#how-its-done">How It’s Done</a>
+            <a href="#documents-required">Documents Required</a>
+            <a href="/document-checklist">Checklist Center</a>
         </div>
 
-        <div class="hero-description">
+        <div class="hero-description" id="about-plan">
             <h3>About this plan</h3>
             <p>
                 It is a provision introduced under the Income Tax Act in India, allowing taxpayers
@@ -97,6 +95,60 @@
             </div>
 
             <a href="{{ url_for('buy_now') }}" class="btn-primary btn-full"> Buy now</a>
+        </div>
+    </div>
+</section>
+
+<section class="itr-extensions">
+    <div class="ext-grid">
+        <div class="ext-card" id="who-should-buy">
+            <h3>Who Should File Belated ITR-U?</h3>
+            <ul>
+                <li>Missed filing return within due date.</li>
+                <li>Need to add missed income from previous filing.</li>
+                <li>Need to correct incorrect details in filed return.</li>
+                <li>Received notice to regularize prior filing mismatch.</li>
+            </ul>
+        </div>
+        <div class="ext-card">
+            <h3>Late Filing Impact</h3>
+            <ul>
+                <li>Additional tax and interest may apply.</li>
+                <li>Delay can increase compliance follow-up risk.</li>
+                <li>Future loan/profile verification can be affected.</li>
+                <li>Timely correction helps reduce notice stress.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="ext-card" id="documents-required">
+        <h3>Documents Required</h3>
+        <details>
+            <summary>Identity & Profile</summary>
+            <p>PAN, Aadhaar, mobile and email linked to income tax portal.</p>
+        </details>
+        <details>
+            <summary>Income & Bank</summary>
+            <p>Form 16/salary slips, bank statements, and other income proofs.</p>
+        </details>
+        <details>
+            <summary>Deductions & Investments</summary>
+            <p>Proofs for 80C/80D, loan statements, and deduction documents.</p>
+        </details>
+        <details>
+            <summary>Previous Return Data</summary>
+            <p>Earlier ITR acknowledgement and any notice/communication copies.</p>
+        </details>
+        <a href="/document-checklist" class="ext-btn">Open Document Checklist Center</a>
+    </div>
+
+    <div class="ext-card" id="how-its-done">
+        <h3>How It’s Done</h3>
+        <div class="timeline">
+            <div><span>1</span> Share details and previous return documents</div>
+            <div><span>2</span> Expert review and correction summary</div>
+            <div><span>3</span> Updated return preparation and confirmation</div>
+            <div><span>4</span> Filing + acknowledgement shared with you</div>
         </div>
     </div>
 </section>

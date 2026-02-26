@@ -190,8 +190,23 @@ input[type="text"] {
   cursor: pointer;
   box-sizing: border-box;
   margin: 0 auto;
+  min-height: 46px;
+  transition: transform 0.08s ease, filter 0.2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
 
+}
+.primary-btn:hover {
+  filter: brightness(0.96);
+}
+
+.primary-btn:active {
+  transform: translateY(1px);
 }
 .decline {
   display: block;

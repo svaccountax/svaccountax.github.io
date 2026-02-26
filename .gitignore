@@ -1,0 +1,18 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Env
+.env
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+
+# Media (important)
+*.mp4
+*.mov
+fiverr_docs/

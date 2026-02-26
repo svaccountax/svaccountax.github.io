@@ -4,6 +4,10 @@ body {
     background: #f5f7fb;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .container {
     max-width: 520px;
     background: white;
@@ -23,12 +27,68 @@ h1 {
     margin-bottom: 20px;
 }
 
+.form-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 14px;
+}
+
+.form-tabs a {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-tabs a:hover {
+    color: #1e40af;
+}
+
+.precheck {
+    background: #f6f9ff;
+    border: 1px solid #dbe7f7;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+}
+
+.precheck h3 {
+    color: #1e40af;
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.precheck ul {
+    margin: 0 0 8px 18px;
+    color: #475569;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.precheck a {
+    color: #1d4ed8;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
 input, select {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
     border-radius: 6px;
     border: 1px solid #ccc;
+}
+
+.helper-text {
+    display: block;
+    margin-top: -8px;
+    margin-bottom: 12px;
+    color: #64748b;
+    font-size: 12px;
 }
 
 .checkbox {
@@ -84,4 +144,38 @@ button:hover {
 .status.converted {
     color: green;
     font-weight: bold;
+}
+
+@media (max-width: 700px) {
+    .container {
+        margin: 20px 12px;
+        padding: 18px;
+        max-width: none;
+    }
+
+    h1 {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .form-tabs {
+        gap: 8px;
+    }
+
+    .form-tabs a {
+        font-size: 13px;
+    }
+
+    input, select {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 15px;
+        padding: 12px;
+    }
 }
